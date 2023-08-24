@@ -36,7 +36,5 @@ public enum Action {
                     System.out.println("Неизвестный код " + code);
                     return Action.ERROR;
                 });
-
-
     }
 }

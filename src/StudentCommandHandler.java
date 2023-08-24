@@ -1,3 +1,5 @@
+import java.util.Map;
+
 public class StudentCommandHandler {
     private StudentStorage studentStorage = new StudentStorage();
 
@@ -7,12 +9,25 @@ public class StudentCommandHandler {
             case CREATE -> processCreateCommand(command);
             case UPDATE -> processUpdateCommand(command);
             case DELETE -> processDeleteCommand(command);
+            case STATS_BY_COURSE -> {
+                processStatsByCourseCommand(command);
+            }
+            case SEARCH -> processSearchCommand(command);
             default -> System.out.println("Действие не поддерживается");
         }
 
-
         System.out.println("Обработка команды. действие " + command.getAction().name()
                 + " данные" + command.getData());
+    }
+
+    private void processSearchCommand (Command command){
+        String surname = command.getData();
+       studentStorage.search(surname);
+    }
+    public void processStatsByCourseCommand(Command command){
+        Map<String, Long> data =studentStorage.getCountByCourse();
+        studentStorage.printMap(data);
+
     }
 
     private void processCreateCommand(Command command){
