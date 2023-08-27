@@ -98,5 +98,14 @@ public class StudentStorage {
                 ));
         return res;
     }
+    public Map<String, Long> getCountByCity(){
+        Map<String, Long> res = studentStorageMap.values().stream()
+                .collect(Collectors.toMap(
+                        s->s.getCity(),
+                        s->1L,
+                        (count1, count2) ->count1 + count2
+                ));
+        return res;
+    }
 
 }

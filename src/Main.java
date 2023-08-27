@@ -21,14 +21,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         try {
             String code = scanner.nextLine();
-            Integer actionCode = Integer.valueOf(code);
-            Action action = Action.fromCode(actionCode);
-            if (action.isRequireAdditionalData()) {
-                String data = scanner.nextLine();
-                return new Command(action, data);
-            } else {
-                return new Command(action);
-            }
+                Integer actionCode = Integer.valueOf(code);
+                Action action = Action.fromCode(actionCode);
+                if (action.isRequireAdditionalData()) {
+                    String data = scanner.nextLine();
+                    return new Command(action, data);
+                } else {
+                    return new Command(action);
+                }
         } catch (Exception e) {
             System.out.println("Проблема обработки ввода. " + e.getMessage());
             return new Command(Action.ERROR);
@@ -42,7 +42,7 @@ public class Main {
         System.out.println("2. Обновление данных");
         System.out.println("3. Удаление данных");
         System.out.println("4. Вывод статистики по курсам");
-        System.out.println("5. ");
+        System.out.println("5. Вывод статистики по городам");
         System.out.println("6. Поиск по фамилии ");
         System.out.println("---------------------");
     }
