@@ -38,11 +38,11 @@ public class StudentCommandHandler {
         String[] dataArray = data.split(", "); // заполняем массив стрингами разделяя через запятую
 
 //        ПРОверка на правильность ввода
-        if (!dataArray[0].matches("[а-яА-Я]")
-                || !dataArray[1].matches("[а-яА-Я]")
-                || !dataArray[2].matches("[а-яА-Я]")
-                || !dataArray[3].matches("[а-яА-Я]")
-                || !dataArray[4].matches("[0-9]")) {
+        if (dataArray[0].matches("[^а-яА-Я]*")
+                || dataArray[1].matches("[^а-яА-Я]*")
+                || dataArray[2].matches("[^а-яА-Я]*")
+                || dataArray[3].matches("[^а-яА-Я]*")
+                || dataArray[4].matches("[^0-9]*")) {
 
             System.out.println("Неправильный ввод");
             return;
@@ -55,6 +55,11 @@ public class StudentCommandHandler {
             student.setCourse(dataArray[2]);
             student.setCity(dataArray[3]);
             student.setAge(Integer.valueOf(dataArray[4]));
+
+            if(student.getAge() < 0 || student.getAge() > 70){
+                System.out.println("Wrong age");
+                return;
+            }
 
                 studentStorage.createStudent(student);
                 studentStorage.printAll();

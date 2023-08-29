@@ -25,8 +25,8 @@ public class StudentSurnameStorage {
      * Данный метод возвращает уникальные идентификаторы студентов чьи фамилии меньше или равны переданной
      * @return set
      */
-    public Set<Long> getStudentsBySurnamesLessOrEqualThan(String surname){
-        Set <Long> res = surnamesTreeMap.headMap(surname, true)
+    public Set<Long> getStudentsBetweenSurnames(String surname1, String surname2){
+        Set <Long> res = surnamesTreeMap.subMap(surname1, true, surname2, true)
                 .values()
                 .stream()
                 .flatMap(longs -> longs.stream())

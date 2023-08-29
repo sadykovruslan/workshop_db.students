@@ -59,11 +59,20 @@ public class StudentStorage {
     }
 
     public void search (String surname) {
-        Set<Long> students = studentSurnameStorage.getStudentsBySurnamesLessOrEqualThan(surname);
-        for (Long studentId : students) {
-            Student student = studentStorageMap.get(studentId);
-            System.out.println(student);
+        Student student = new Student();
+        if(surname.isEmpty()){
+            System.out.println(studentStorageMap);
         }
+        if(surname.contains(", ")) {
+            String[] surnamesArray = surname.split(", ");
+            Set<Long> students = studentSurnameStorage.getStudentsBetweenSurnames(surnamesArray[0],surnamesArray[1]);
+            for (Long studentId : students) {
+                Student student1 = studentStorageMap.get(studentId);
+                System.out.println(student1);
+            }
+        } else {
+            System.out.println(studentStorageMap.get(student));
+            }
     }
 
     public Long getNextId(){
